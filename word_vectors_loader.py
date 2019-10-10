@@ -1,28 +1,29 @@
 # coding:utf-8
 
-import sys
 import struct
 import math
 import numpy as np
 
-reload(sys)
+import importlib,sys
+importlib.reload(sys)
+
 sys.setdefaultencoding( "utf-8" )
 
 max_w = 50
 float_size = 4
 
 def load_vectors(input):
-    print "begin load vectors"
+    print("begin load vectors")
 
     input_file = open(input, "rb")
 
     # 获取词表数目及向量维度
     words_and_size = input_file.readline()
     words_and_size = words_and_size.strip()
-    words = long(words_and_size.split(' ')[0])
-    size = long(words_and_size.split(' ')[1])
-    print "words =", words
-    print "size =", size
+    words = int(words_and_size.split(' ')[0])
+    size = int(words_and_size.split(' ')[1])
+    print("words =", words)
+    print("size =", size)
 
     word_vector = {}
 
@@ -51,12 +52,12 @@ def load_vectors(input):
 
     input_file.close()
 
-    print "load vectors finish"
+    print("load vectors finish")
     return word_vector
 
 if __name__ == '__main__':
     if 2 != len(sys.argv):
-        print "Usage: ", sys.argv[0], "vectors.bin"
+        print("Usage: ", sys.argv[0], "vectors.bin")
         sys.exit(-1)
     d = load_vectors(sys.argv[1])
-    print d[u'真的']
+    print(d[u'真的'])
